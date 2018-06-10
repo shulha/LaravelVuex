@@ -12,9 +12,4 @@ export default new Vuex.Store({
     modules: {
         home,
     },
-
-    /**
-     * If strict mode should be enabled.
-     */
-    strict: debug,
 });
