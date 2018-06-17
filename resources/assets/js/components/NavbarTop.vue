@@ -17,11 +17,12 @@
                     <router-link :to="{ name: 'register' }" class="nav-link">{{ $t('translation.register') }}</router-link>
                  </li>
             </ul>
-            <select v-model="locale">
-                <option value="ru">{{ $t('translation.ru') }}</option>
-                <option value="en">{{ $t('translation.en') }}</option>
-            </select>
+
             <form class="form-inline my-2 my-lg-0">
+                <select class="form-control mr-2" v-model="locale">
+                    <option value="ru">{{ $t('translation.ru') }}</option>
+                    <option value="en">{{ $t('translation.en') }}</option>
+                </select>
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
