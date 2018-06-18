@@ -8,6 +8,7 @@ export default {
         register: 'Зарегистрироваться',
         authorization: 'Авторизация',
         registration: 'Регистрация',
+        search: 'Поиск',
 
         surname: 'Фамилия',
         placeholderSurname: '',
@@ -20,6 +21,6 @@ export default {
         password: 'Пороль',
         placeholderPassword: '',
         passwordConfirmation: 'Подтвердите пароль',
-        placeholderPasswordConfirm: '',
+        placeholderPasswordConfirmation: '',
     },
 };

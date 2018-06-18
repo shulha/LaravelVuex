@@ -3,10 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header">Authentication</div>
+                    <div class="card-header"> Home </div>
 
                     <div class="card-body">
-                        Laravel 5 Vue SPA Authentication
+                        Laravel 5
                     </div>
                 </div>
             </div>

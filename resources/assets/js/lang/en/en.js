@@ -8,6 +8,7 @@ export default {
         register: 'Registration',
         authorization: 'Authorization',
         registration: 'Registration',
+        search: 'Search',
 
         surname: 'Surname',
         placeholderSurname: '',
@@ -20,6 +21,6 @@ export default {
         password: 'Password',
         placeholderPassword: '',
         passwordConfirmation: 'Confirm the password',
-        placeholderPasswordConfirm: '',
+        placeholderPasswordConfirmation: '',
     },
 };
