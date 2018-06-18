@@ -6,5 +6,7 @@ export default {
         home: 'Главная',
         login: 'Авторизоваться',
         register: 'Зарегистрироваться',
+        authorization: 'Авторизация',
+        registration: 'Регистрация',
     },
 };
