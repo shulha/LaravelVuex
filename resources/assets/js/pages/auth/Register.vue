@@ -13,7 +13,9 @@
                                    v-validate="'required|min:2|max:255'"
                                    :data-vv-as="$t('translation.surname')"
                                    v-model="surname">
-                            <small class="form-text text-danger" v-if="errors.has('surname')">{{ errors.first('surname') }}</small>
+                            <small class="form-text text-danger" v-if="errors.has('surname')">
+                                {{ errors.first('surname') }}
+                            </small>
                         </div>
                         <div class="form-group">
                             <label for="name">{{ $t('translation.name') }}</label>
@@ -22,7 +24,9 @@
                                    v-validate="'required|min:2|max:255'"
                                    :data-vv-as="$t('translation.name')"
                                    v-model="name">
-                            <small class="form-text text-danger" v-if="errors.has('name')">{{ errors.first('name') }}</small>
+                            <small class="form-text text-danger" v-if="errors.has('name')">
+                                {{ errors.first('name') }}
+                            </small>
                         </div>
                         <div class="form-group">
                             <label for="middle_name">{{ $t('translation.middleName') }}</label>
@@ -31,7 +35,9 @@
                                    v-validate="'required|min:2|max:255'"
                                    :data-vv-as="$t('translation.middleName')"
                                    v-model="middleName">
-                            <small class="form-text text-danger" v-if="errors.has('middle_name')">{{ errors.first('middle_name') }}</small>
+                            <small class="form-text text-danger" v-if="errors.has('middle_name')">
+                                {{ errors.first('middle_name') }}
+                            </small>
                         </div>
                         <div class="form-group">
                             <label for="email">{{ $t('translation.email') }}</label>
@@ -40,7 +46,9 @@
                                    v-validate="'required|email|max:255'"
                                    :data-vv-as="$t('translation.email')"
                                    v-model="email">
-                            <small class="form-text text-danger" v-if="errors.has('email')">{{ errors.first('email') }}</small>
+                            <small class="form-text text-danger" v-if="errors.has('email')">
+                                {{ errors.first('email') }}
+                            </small>
                         </div>
                         <div class="form-group">
                             <label for="password">{{ $t('translation.password') }}</label>
@@ -49,19 +57,30 @@
                                    v-validate="'required|min:8|max:24'"
                                    :data-vv-as="$t('translation.password')"
                                    v-model="password">
-                            <small class="form-text text-danger" v-if="errors.has('password')">{{ errors.first('password') }}</small>
+                            <small class="form-text text-danger" v-if="errors.has('password')">
+                                {{ errors.first('password') }}
+                            </small>
                         </div>
-                        <div class="form-group" style="position: relative">
+                        <div class="form-group">
                             <label for="password_confirmation">{{ $t('translation.passwordConfirmation') }}</label>
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation"
                                    :placeholder="$t('translation.placeholderPasswordConfirmation')"
-                                   v-validate="'required|min:8|max:24|confirmed:password'"
+                                   v-validate="`confirmed:password`"
                                    :data-vv-as="$t('translation.passwordConfirmation')"
                                    v-model="passwordConfirmation">
-                            <small class="form-text text-danger" v-if="errors.has('password_confirmation')">{{ errors.first('password_confirmation') }}</small>
+                            <small class="form-text text-danger" v-if="errors.has('password_confirmation')">
+                                {{ errors.first('password_confirmation') }}
+                            </small>
                         </div>
 
-                        <button type="button" class="btn btn-success float-right">{{ $t('translation.register') }}</button>
+                        password: {{ password }} <br>
+                        passwordConfirmation: {{ passwordConfirmation }} <br>
+                        match: {{ password === passwordConfirmation }}
+
+                        <button type="button" class="btn btn-success float-right"
+                                @click="registration">
+                            {{ $t('translation.register') }}
+                        </button>
                     </div>
 
                 </div>
@@ -71,16 +90,40 @@
 </template>
 
 <script>
+    import MixinUser from '../../mixins/user';
+
     export default {
-        data() {
-            return {
-                surname: 'q',
-                name: 'q',
-                middleName: 'q',
-                email: 'q@q.q',
-                password: '12345678',
-                passwordConfirmation: '12345678',
-            };
+        mixins: [
+            MixinUser,
+        ],
+        methods: {
+            async registration() {
+                const valid = await this.$validator.validateAll();
+
+                if (valid) {
+                    try {
+                        this.$store.dispatch('register', {
+                            surname: this.surname,
+                            name: this.name,
+                            middle_name: this.middleName,
+                            email: this.email,
+                            password: this.password,
+                            password_confirmation: this.passwordConfirmation,
+                        });
+                        this.clearFields();
+                    } catch (e) {
+                        console.log(e);
+                    }
+                }
+            },
+            clearFields() {
+                this.surname = '';
+                this.name = '';
+                this.middleName = '';
+                this.email = '';
+                this.password = '';
+                this.passwordConfirmation = '';
+            },
         },
     };
 </script>
