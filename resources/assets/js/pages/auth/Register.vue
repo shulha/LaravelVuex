@@ -73,10 +73,6 @@
                             </small>
                         </div>
 
-                        password: {{ password }} <br>
-                        passwordConfirmation: {{ passwordConfirmation }} <br>
-                        match: {{ password === passwordConfirmation }}
-
                         <button type="button" class="btn btn-success float-right"
                                 @click="registration">
                             {{ $t('translation.register') }}

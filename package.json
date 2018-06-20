@@ -20,7 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "vee-validate": "^2.1.0-beta.2",
+        "vee-validate": "^2.0.0",
         "vue-i18n": "^7.8.0",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1",
