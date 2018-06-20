@@ -106,9 +106,11 @@
                             password: this.password,
                             password_confirmation: this.passwordConfirmation,
                         });
-                        this.clearFields();
+                        // this.clearFields();
+                        this.$toasted.success(this.$t('translation.successRegistration'));
                     } catch (e) {
                         console.log(e);
+                        this.$toasted.show(e);
                     }
                 }
             },

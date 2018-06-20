@@ -22,5 +22,7 @@ export default {
         placeholderPassword: '',
         passwordConfirmation: 'Confirm the password',
         placeholderPasswordConfirmation: '',
+
+        successRegistration: 'Success registration',
     },
 };

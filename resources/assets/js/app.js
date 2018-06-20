@@ -13,6 +13,7 @@ import router from './router';
 import store from './store';
 import i18n from './plugins/lang';
 import './plugins/vee-validate';
+import './plugins/toasted';
 
 /**
  * Main App.
