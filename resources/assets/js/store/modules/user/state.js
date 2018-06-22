@@ -7,4 +7,6 @@ export default {
     currentUserPassword: '12345678',
     currentUserPasswordConfirmation: '12345678',
 
+    authorized: false,
+    token: null,
 };

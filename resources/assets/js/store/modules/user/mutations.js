@@ -22,4 +22,7 @@ export default {
     [types.CURRENT_USER_PASSWORD_CONFIRMATION](state, payload) {
         state.currentUserPasswordConfirmation = payload;
     },
+    // [types.LOGIN](state, payload) {
+    //     state.auth
+    // },
 };

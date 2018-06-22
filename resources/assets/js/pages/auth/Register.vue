@@ -119,13 +119,17 @@
                         this.$router.push({
                             name: 'home',
                         });
-                    } catch (e) {
-                        // TODO: Check wat has error with email
 
-                        this.$validator.validate('email', 0);
+                    } catch (e) {
+
+                        Object.keys(e.response.data.errors).forEach((item) => {
+                            if (item === 'email') {
+                                this.$validator.validate('email', 0);
+                                return item;
+                            }
+                        });
 
                         Object.values(e.response.data.errors).forEach((item) => {
-                            console.log(item);
                             this.$toasted.show(this.$t(`translation.${camelCase(item[0])}`), {
                                 type: 'error',
                             });
