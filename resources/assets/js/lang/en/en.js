@@ -24,5 +24,7 @@ export default {
         placeholderPasswordConfirmation: '',
 
         successRegistration: 'Success registration',
+        theEmailHasAlreadyBeenTaken: 'Email already exists',
+
     },
 };

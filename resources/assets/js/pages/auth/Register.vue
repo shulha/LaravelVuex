@@ -45,7 +45,8 @@
                                    :placeholder="$t('translation.placeholderEmail')"
                                    v-validate="'required|email|max:255'"
                                    :data-vv-as="$t('translation.email')"
-                                   v-model="email">
+                                   v-model="email"
+                                   @input="$validator.validate('email', 1)">
                             <small class="form-text text-danger" v-if="errors.has('email')">
                                 {{ errors.first('email') }}
                             </small>
@@ -88,17 +89,25 @@
 <script>
     import MixinUser from '../../mixins/user';
 
+    const camelCase = require('camelcase');
+
     export default {
         mixins: [
             MixinUser,
         ],
+        created() {
+            this.$validator.attach({
+                name: 'email',
+                rules: 'unique',
+            });
+        },
         methods: {
             async registration() {
                 const valid = await this.$validator.validateAll();
 
                 if (valid) {
                     try {
-                        this.$store.dispatch('register', {
+                        await this.$store.dispatch('register', {
                             surname: this.surname,
                             name: this.name,
                             middle_name: this.middleName,
@@ -106,21 +115,23 @@
                             password: this.password,
                             password_confirmation: this.passwordConfirmation,
                         });
-                        // this.clearFields();
-                        this.$toasted.success(this.$t('translation.successRegistration'));
+
+                        this.$router.push({
+                            name: 'home',
+                        });
                     } catch (e) {
-                        console.log(e);
-                        this.$toasted.show(e);
+                        // TODO: Check wat has error with email
+
+                        this.$validator.validate('email', 0);
+
+                        Object.values(e.response.data.errors).forEach((item) => {
+                            console.log(item);
+                            this.$toasted.show(this.$t(`translation.${camelCase(item[0])}`), {
+                                type: 'error',
+                            });
+                        });
                     }
                 }
-            },
-            clearFields() {
-                this.surname = '';
-                this.name = '';
-                this.middleName = '';
-                this.email = '';
-                this.password = '';
-                this.passwordConfirmation = '';
             },
         },
     };
