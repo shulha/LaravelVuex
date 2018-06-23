@@ -2,6 +2,14 @@ import * as types from '../store/modules/user/mutation-types';
 
 export default {
     computed: {
+        logged: {
+            get() {
+                return this.$store.getters.logged;
+            },
+            set() {
+                this.$store.commit(types.LOGIN);
+            },
+        },
         lang: {
             get() {
                 return this.$store.getters.currentLang;

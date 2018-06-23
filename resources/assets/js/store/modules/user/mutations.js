@@ -4,6 +4,19 @@ export default {
     [types.CURRENT_LANG](state, payload) {
         state.currentLang = payload;
     },
+    [types.LOGIN](state, payload) {
+        window.Cookies.set('token', payload.token);
+        window.axios.defaults.headers.common.Authorization = `Bearer ${payload.token}`;
+
+        state.logged = true;
+        state.token = payload.token;
+    },
+    [types.CURRENT_USER_ID](state, payload) {
+        state.currentUserId = payload;
+    },
+    [types.CURRENT_USER_ROLE_ID](state, payload) {
+        state.currentUserRoleId = payload;
+    },
     [types.CURRENT_USER_SURNAME](state, payload) {
         state.currentUserSurname = payload;
     },
@@ -22,7 +35,4 @@ export default {
     [types.CURRENT_USER_PASSWORD_CONFIRMATION](state, payload) {
         state.currentUserPasswordConfirmation = payload;
     },
-    // [types.LOGIN](state, payload) {
-    //     state.auth
-    // },
 };

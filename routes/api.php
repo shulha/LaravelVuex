@@ -14,5 +14,6 @@
 Route::group([
     'prefix' => 'v1',
 ], function () {
-    Route::post("/register", "Api\V1\UserController@register");
+    Route::post("/register", "Api\V1\AuthController@register");
+    Route::get("/user/current", "Api\V1\UserController@getUserCurrent");
 });

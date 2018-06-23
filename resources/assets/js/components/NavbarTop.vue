@@ -9,23 +9,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <router-link :to="{ name: 'auth.login' }" class="nav-link">{{ $t('translation.login') }}</router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link :to="{ name: 'auth.register' }" class="nav-link">{{ $t('translation.register') }}</router-link>
-                 </li>
+                <template v-if="!logged">
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'auth.login' }" class="nav-link">{{ $t('translation.login') }}</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link :to="{ name: 'auth.register' }" class="nav-link">{{ $t('translation.register') }}</router-link>
+                    </li>
+                </template>
             </ul>
 
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search"
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" v-if="logged"
                        :placeholder="$t('translation.search')">
                 <select class="form-control mr-2"
                         v-model="lang">
                     <option value="ru">{{ $t('translation.ru') }}</option>
                     <option value="en">{{ $t('translation.en') }}</option>
                 </select>
-            </form>
+            </div>
         </div>
     </nav>
 </template>
