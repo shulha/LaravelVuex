@@ -55,7 +55,7 @@
                             <label for="password">{{ $t('translation.password') }}</label>
                             <input type="password" class="form-control" id="password" name="password"
                                    :placeholder="$t('translation.placeholderPassword')"
-                                   v-validate="'required|min:8|max:24'"
+                                   v-validate="`required|min:${constants.MIN_LENGTH_PASSWORD}|max:24`"
                                    :data-vv-as="$t('translation.password')"
                                    v-model="password">
                             <small class="form-text text-danger" v-if="errors.has('password')">
@@ -88,6 +88,7 @@
 
 <script>
     import MixinUser from '../../mixins/user';
+    import * as constants from '../../utils/constants';
 
     const camelCase = require('camelcase');
 
@@ -100,6 +101,11 @@
                 name: 'email',
                 rules: 'unique',
             });
+        },
+        data () {
+            return {
+                constants,
+            };
         },
         methods: {
             async registration() {
@@ -115,6 +121,9 @@
                             password: this.password,
                             password_confirmation: this.passwordConfirmation,
                         });
+
+                        this.password = null;
+                        this.passwordConfirmation = null;
 
                         this.$router.push({
                             name: 'home',

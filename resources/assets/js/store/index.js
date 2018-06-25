@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import home from './modules/home';
+import home from './modules/auth';
 import user from './modules/user';
 
 Vue.use(Vuex);

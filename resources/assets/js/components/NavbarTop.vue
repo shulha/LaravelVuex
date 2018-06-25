@@ -17,6 +17,32 @@
                         <router-link :to="{ name: 'auth.register' }" class="nav-link">{{ $t('translation.register') }}</router-link>
                     </li>
                 </template>
+                <template v-else>
+                    <li class="nav-item dropdown">
+                        <a
+                                class="nav-link dropdown-toggle"
+                                href="#" id="user-dropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                        >
+                            {{ name }} {{ surname }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown">
+                            <router-link
+                                    :to="{ name: 'auth.profile' }"
+                                    class="dropdown-item"
+                            >
+                                {{ $t("translation.profile") }}
+                            </router-link>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" @click.prevent="logout">
+                                {{ $t("translation.logout") }}
+                            </a>
+                        </div>
+                    </li>
+                </template>
             </ul>
 
             <div class="form-inline my-2 my-lg-0">
@@ -44,6 +70,15 @@
                 this.$i18n.locale = val;
                 this.$nextTick(() => {
                     this.$validator.locale = val;
+                });
+            },
+        },
+        methods: {
+            async logout() {
+                await this.$store.dispatch('logout');
+
+                this.$router.push({
+                    name: 'auth.login',
                 });
             },
         },

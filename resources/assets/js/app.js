@@ -23,6 +23,8 @@ import './plugins/toasted';
 
 import App from './pages/App.vue';
 
+store.dispatch('checkLogged');
+
 new Vue({
     router,
     store,

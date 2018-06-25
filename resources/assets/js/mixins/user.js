@@ -1,4 +1,4 @@
-import * as types from '../store/modules/user/mutation-types';
+import * as types from '../store/modules/auth/mutation-types';
 
 export default {
     computed: {
@@ -16,6 +16,22 @@ export default {
             },
             set(value) {
                this.$store.commit(types.CURRENT_LANG, value);
+            },
+        },
+        userId: {
+            get() {
+                return this.$store.getters.currentUserId;
+            },
+            set(value) {
+               this.$store.commit(types.CURRENT_USER_ID, value);
+            },
+        },
+        userRoleId: {
+            get() {
+                return this.$store.getters.currentUserRoleId;
+            },
+            set(value) {
+               this.$store.commit(types.CURRENT_USER_ROLE_ID, value);
             },
         },
         surname: {

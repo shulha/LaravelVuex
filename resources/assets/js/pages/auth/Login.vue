@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">{{ $t('translation.password') }}</label>
-                            <input type="text" class="form-control" id="password" name="password"
+                            <input type="password" class="form-control" id="password" name="password"
                                    :placeholder="$t('translation.placeholderPassword')"
                                    v-validate="'required|min:2|max:255'"
                                    :data-vv-as="$t('translation.password')"
@@ -28,7 +28,9 @@
                                 {{ errors.first('password') }}
                             </small>
                         </div>
-                        <button class="btn btn-success float-right">{{ $t('translation.authorization') }}</button>
+                        <button class="btn btn-success float-right" @click="login">
+                            {{ $t('translation.authorization') }}
+                        </button>
                     </div>
 
                 </div>
@@ -44,5 +46,26 @@
         mixins: [
             MixinUser,
         ],
+        methods: {
+            login() {
+                try {
+                    this.$store.dispatch('login', {
+                        email: this.email,
+                        password: this.password,
+                    });
+
+                    this.$router.push({
+                        name: 'home',
+                    });
+
+                } catch (e) {
+                    Object.values(e.response.data.errors).forEach((item) => {
+                        this.$toasted.show(this.$t(`translation.${camelCase(item[0])}`), {
+                            type: 'error',
+                        });
+                    });
+                }
+            },
+        },
     };
 </script>

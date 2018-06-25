@@ -8,4 +8,5 @@ class Constants {
     const USER_ROLE_ADMINISTRATOR = 'administrator';
     const USER_ROLE_ID_CLIENT = 2;
     const USER_ROLE_CLIENT = 'client';
+    const MIN_LENGTH_PASSWORD = 8;
 }
