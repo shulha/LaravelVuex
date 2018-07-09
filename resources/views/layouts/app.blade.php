@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-white">
     <div id="app">
         @yield("content")
     </div>

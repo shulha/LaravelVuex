@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white mb-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white mb-3 border-bottom">
             <router-link :to="{ name: 'home' }" class="navbar-brand">
                 {{ $t('translation.logoName') }}
             </router-link>
