@@ -2,6 +2,7 @@ import * as types from './mutation-types';
 
 export default {
     [types.CURRENT_LANG](state, payload) {
+        window.Cookies.set('locale', payload);
         state.currentLang = payload;
     },
     [types.LOGIN](state, payload) {
