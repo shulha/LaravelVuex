@@ -2,7 +2,13 @@
 # Laravel-Vue-Vuex
 Simple start-up project
 
-## connected plug-ins
+## Connected plug-ins
 - vue-i18n
 - vue-toasted
 - vee-validate
+
+## Install
+$ npm install
+$ composer update
+$ php artisan migrate 
+$ php artisan db:seed
