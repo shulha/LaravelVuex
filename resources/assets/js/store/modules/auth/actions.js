@@ -2,12 +2,10 @@ import auth from '../../../api/auth';
 
 import * as types from './mutation-types';
 
-export const register = async ({ commit }, payload) => {
+export const register = async ({ dispatch, commit }, payload) => {
     const json = await auth.register(payload);
 
     if (json.status === 200) {
-        commit(types.LOGIN, json.data);
-        await dispatch('getUserCurrent');
         return json;
     }
 
@@ -17,12 +15,17 @@ export const register = async ({ commit }, payload) => {
 export const getUserCurrent = async ({ commit }) => {
     const json = await auth.getUserCurrent();
 
-    commit(types.CURRENT_USER_ID, json.data.id);
-    commit(types.CURRENT_USER_ROLE_ID, json.data.role_id);
-    commit(types.CURRENT_USER_SURNAME, json.data.surname);
-    commit(types.CURRENT_USER_NAME, json.data.name);
-    commit(types.CURRENT_USER_MIDDLE_NAME, json.data.middle_name);
-    commit(types.CURRENT_USER_EMAIL, json.data.email);
+    if (json.status === 200) {
+        commit(types.CURRENT_USER_ID, json.data.id);
+        commit(types.CURRENT_USER_ROLE_ID, json.data.role_id);
+        commit(types.CURRENT_USER_SURNAME, json.data.surname);
+        commit(types.CURRENT_USER_NAME, json.data.name);
+        commit(types.CURRENT_USER_MIDDLE_NAME, json.data.middle_name);
+        commit(types.CURRENT_USER_EMAIL, json.data.email);
+        return json;
+    }
+
+    throw json;
 };
 
 export const emailConfirmation = async (context, payload) => {

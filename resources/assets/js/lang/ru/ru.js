@@ -24,8 +24,13 @@ export default {
         placeholderPassword: '',
         passwordConfirmation: 'Подтвердите пароль',
         placeholderPasswordConfirmation: '',
+        confirmEmailHeader: 'Подтверждение email',
+        confirmEmailBodyStart: 'На ',
+        confirmEmailBodyEnd: ' отправлено письмо. Перейдите по ссылке в письме для подтверждения.',
+        successConfirmEmailBody: 'Email успешно подтвержден.',
 
         successRegistration: 'Успешная регистрация',
         theEmailHasAlreadyBeenTaken: 'Эл. адрес уже существует',
+        userNotFound: 'Пользователь не найден',
     },
 };

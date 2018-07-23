@@ -1,12 +1,11 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Confirmed</div>
 
-                    <div class="card-body">
-                        <!--<button class="btn btn-success float-right">{{ $t('translation.authorization') }}</button>-->
+                    <div class="card-body text-center">
+                        {{ $t('translation.successConfirmEmailBody') }}
                     </div>
 
                 </div>

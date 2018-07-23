@@ -6,6 +6,9 @@ export default {
         unique() {
             return 'Эл. адрес уже существует';
         },
+        notFound() {
+            return 'Пользователь не найден';
+        },
     },
     attributes: {
         name: 'Имя',

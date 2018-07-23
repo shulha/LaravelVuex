@@ -51,20 +51,27 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        /*
-         * Auth::once method to log a user into the application for a single request.
-         * No sessions or cookies will be utilized.
-         */
         if (Auth::once([
             "email" => $request->input("email"),
             "password" => $request->input("password"),
-            "email_verified" => 1,
         ])) {
-            return response()->json([
-                "token" => Auth::user()->api_token,
-            ]);
+            if (Auth::user()->email_verified) {
+
+                return response()->json([
+                    "token" => Auth::user()->api_token,
+                ], 200);
+
+            } else {
+
+                return response()->json([
+                    "message" => "emailNotVerified",
+                ], 403);
+            }
         } else {
-            throw new AuthenticationException;
+
+            return response()->json([
+                "message" => "userNotFound",
+            ], 404);
         }
     }
 }

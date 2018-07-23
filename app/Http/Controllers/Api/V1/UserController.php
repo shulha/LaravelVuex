@@ -9,6 +9,14 @@ class UserController extends Controller
 {
     public function getUserCurrent()
     {
-        return response()->json(Auth::user(), 200);
+        if (Auth::user()->email_verified) {
+            $status = 200;
+            $data = Auth::user();
+        } else {
+            $status = 403;
+            $data = null;
+        }
+
+        return response()->json($data, $status);
     }
 }

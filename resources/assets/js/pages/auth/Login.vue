@@ -42,28 +42,50 @@
 <script>
     import MixinUser from '../../mixins/user';
 
+    const camelCase = require('camelcase');
+
     export default {
         mixins: [
             MixinUser,
         ],
+        created() {
+            this.$validator.attach({
+                name: 'email',
+                rules: 'notFound',
+            });
+        },
         methods: {
-            login() {
-                try {
-                    this.$store.dispatch('login', {
-                        email: this.email,
-                        password: this.password,
-                    });
+            async login() {
+                const valid = await this.$validator.validateAll();
 
-                    this.$router.push({
-                        name: 'home',
-                    });
-
-                } catch (e) {
-                    Object.values(e.response.data.errors).forEach((item) => {
-                        this.$toasted.show(this.$t(`translation.${camelCase(item[0])}`), {
-                            type: 'error',
+                if (valid) {
+                    try {
+                        await this.$store.dispatch('login', {
+                            email: this.email,
+                            password: this.password,
                         });
-                    });
+
+                        this.$router.push({
+                            name: 'home',
+                        });
+                    } catch (e) {
+                        if (e.response.data.message === 'emailNotVerified') {
+                            this.$router.push({
+                                name: 'email.confirmation',
+                            });
+                        } else if (e.response.data.message === 'userNotFound') {
+                            this.$validator.validate('email', 0);
+                            this.$toasted.show(this.$t('translation.userNotFound'), {
+                                type: 'error',
+                            });
+                        }
+
+                        Object.values(e.response.data.errors).forEach((item) => {
+                            this.$toasted.show(this.$t(`translation.${camelCase(item[0])}`), {
+                                type: 'error',
+                            });
+                        });
+                    }
                 }
             },
         },

@@ -14,6 +14,15 @@ Validator.extend('unique', {
     getMessage: validationEn.messages.unique,
 });
 
+Validator.extend('notFound', {
+    async validate(value) {
+        return {
+            valid: value !== 0,
+        };
+    },
+    getMessage: validationEn.messages.notFound,
+});
+
 Vue.use(VeeValidate, {
     fieldsBagName: 'fieldsValidation',
     locale: store.getters.currentLang,

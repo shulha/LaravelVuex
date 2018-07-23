@@ -7,6 +7,7 @@ import Profile from '../pages/auth/Profile.vue';
 import Login from '../pages/auth/Login.vue';
 import Register from '../pages/auth/Register.vue';
 import EmailConfirmed from '../pages/auth/EmailConfirmed.vue';
+import EmailConfirmation from '../pages/auth/EmailConfirmation.vue';
 
 import NotFound from '../pages/NotFound.vue';
 
@@ -40,6 +41,14 @@ const routes = [
         path: '/register',
         name: 'auth.register',
         component: Register,
+        meta: {
+            guest: true,
+        },
+    },
+    {
+        path: '/email/confirmation',
+        name: 'email.confirmation',
+        component: EmailConfirmation,
         meta: {
             guest: true,
         },

@@ -24,9 +24,12 @@ export default {
         placeholderPassword: '',
         passwordConfirmation: 'Confirm the password',
         placeholderPasswordConfirmation: '',
+        confirmEmailHeader: 'Confirmation email',
+        confirmEmailBodyStart: 'A letter was sent to ',
+        confirmEmailBodyEnd: ' click the link in the email to confirm',
 
         successRegistration: 'Success registration',
         theEmailHasAlreadyBeenTaken: 'Email already exists',
-
+        userNotFound: 'User not found',
     },
 };

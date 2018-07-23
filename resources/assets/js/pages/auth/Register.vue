@@ -2,6 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
+
                 <div class="card">
                     <div class="card-header">{{ $t('translation.registration') }}</div>
 
@@ -79,8 +80,8 @@
                             {{ $t('translation.register') }}
                         </button>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </div>
@@ -126,11 +127,10 @@
                         this.passwordConfirmation = null;
 
                         this.$router.push({
-                            name: 'home',
+                            name: 'email.confirmation',
                         });
 
                     } catch (e) {
-
                         Object.keys(e.response.data.errors).forEach((item) => {
                             if (item === 'email') {
                                 this.$validator.validate('email', 0);

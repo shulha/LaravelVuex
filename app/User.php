@@ -14,6 +14,7 @@ class User extends Authenticatable
         "name",
         "middle_name",
         "email",
+        "email_verified",
         "password",
         "api_token",
     ];

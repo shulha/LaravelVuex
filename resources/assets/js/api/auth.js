@@ -4,6 +4,11 @@ export default {
 
         return json;
     },
+    async getUserCurrent() {
+        const json = await window.axios.get('/api/v1/user/current');
+
+        return json;
+    },
     async emailConfirmation(params) {
         const json = await window.axios.post('/api/v1/email/confirmation', params);
 
@@ -11,11 +16,6 @@ export default {
     },
     async login(params) {
         const json = await window.axios.post('/api/v1/login', params);
-
-        return json;
-    },
-    async getUserCurrent() {
-        const json = await window.axios.get('/api/v1/user/current');
 
         return json;
     },
