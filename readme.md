@@ -8,7 +8,9 @@ Simple start-up project
 - vee-validate
 
 ## Install
-$ npm install <br/>
-$ composer update <br/>
-$ php artisan migrate <br/>
-$ php artisan db:seed <br/>
+```
+$ npm install
+$ composer update
+$ php artisan migrate
+$ php artisan db:seed
+```
