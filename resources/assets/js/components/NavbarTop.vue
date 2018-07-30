@@ -59,28 +59,13 @@
 </template>
 
 <script>
+    import MixinAuth from '../mixins/auth';
     import MixinUser from '../mixins/user';
 
     export default {
         mixins: [
+            MixinAuth,
             MixinUser,
         ],
-        watch: {
-            lang (val) {
-                this.$i18n.locale = val;
-                this.$nextTick(() => {
-                    this.$validator.locale = val;
-                });
-            },
-        },
-        methods: {
-            async logout() {
-                await this.$store.dispatch('logout');
-
-                this.$router.push({
-                    name: 'auth.login',
-                });
-            },
-        },
     };
 </script>

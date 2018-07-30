@@ -9,7 +9,7 @@
                         <div class="form-group">
                             <label for="email">{{ $t('translation.email') }}</label>
                             <input type="text" class="form-control" id="email" name="email"
-                                   :placeholder="$t('translation.email')"
+                                   :placeholder="$t('translation.placeholderEmail')"
                                    v-validate="'required|min:2|max:255'"
                                    :data-vv-as="$t('translation.email')"
                                    v-model="email">

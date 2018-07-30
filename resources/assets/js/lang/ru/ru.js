@@ -20,7 +20,7 @@ export default {
         placeholderMiddleName: '',
         email: 'Электронная почта',
         placeholderEmail: '',
-        password: 'Пороль',
+        password: 'Пароль',
         placeholderPassword: '',
         passwordConfirmation: 'Подтвердите пароль',
         placeholderPasswordConfirmation: '',
