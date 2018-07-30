@@ -19,6 +19,7 @@ export default {
         middleName: 'Отчество',
         placeholderMiddleName: '',
         email: 'Электронная почта',
+        emailConfirmed: 'Email подтвержден',
         placeholderEmail: '',
         password: 'Пароль',
         placeholderPassword: '',

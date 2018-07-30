@@ -19,6 +19,7 @@ export default {
         middleName: 'Middle name',
         placeholderMiddleName: '',
         email: 'Email',
+        emailConfirmed: 'Email confirmed',
         placeholderEmail: '',
         password: 'Password',
         placeholderPassword: '',
@@ -27,6 +28,7 @@ export default {
         confirmEmailHeader: 'Confirmation email',
         confirmEmailBodyStart: 'A letter was sent to ',
         confirmEmailBodyEnd: ' click the link in the email to confirm',
+        successConfirmEmailBody: 'Email confirmed success.',
 
         successRegistration: 'Success registration',
         theEmailHasAlreadyBeenTaken: 'Email already exists',

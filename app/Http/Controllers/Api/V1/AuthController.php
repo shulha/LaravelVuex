@@ -5,11 +5,9 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Controllers\Controller;
-use App\Mail\ConfirmationEmail;
+use App\Jobs\SendEmail;
 use App\User;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Auth;
 
 class AuthController extends Controller
@@ -24,7 +22,7 @@ class AuthController extends Controller
         $user->api_token = $api_token;
         $user->save();
 
-        Mail::to($user)->send(new ConfirmationEmail($api_token));
+        SendEmail::dispatch($user, $api_token);
 
         return response()->json([
             "token" => $api_token,
