@@ -21,7 +21,7 @@
                             <label for="password">{{ $t('translation.password') }}</label>
                             <input type="password" class="form-control" id="password" name="password"
                                    :placeholder="$t('translation.placeholderPassword')"
-                                   v-validate="'required|min:2|max:255'"
+                                   v-validate="'required|min:8|max:255'"
                                    :data-vv-as="$t('translation.password')"
                                    v-model="password">
                             <small class="form-text text-danger" v-if="errors.has('password')">
