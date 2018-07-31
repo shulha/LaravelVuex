@@ -14,3 +14,11 @@ $ composer update
 $ php artisan migrate
 $ php artisan db:seed
 ```
+
+```
+$ cp .env.example .env
+```
+
+```
+$ php artisan queue:work --daemon
+```
